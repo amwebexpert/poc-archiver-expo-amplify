@@ -6,14 +6,29 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "clean:pods": "cross-env CLEAN_PODS=true npx rimraf ios/Pods ios/Podfile.lock && cd ios && pod install && cd ..",
+    "clean:node": "cross-env CLEAN_NODE=true npx rimraf node_modules package-lock.json yarn.lock",
+    "clean:prebuild:ios": "cross-env PLATFORM=ios expo prebuild --platform ios --clean",
+    "clean:prebuild:android": "cross-env PLATFORM=android expo prebuild --platform android --clean",
+    "typecheck": "npx tsc --noEmit",
+    "expo:doctor": "npx expo-doctor",
+    "expo:check": "npx expo install --check",
+    "eas:whoami": "eas whoami"
   },
   "dependencies": {
+    "@aws-amplify/react-native": "^1.1.10",
+    "@aws-amplify/ui-react-native": "^2.6.0",
+    "@react-native-async-storage/async-storage": "2.1.2",
+    "@react-native-community/netinfo": "^11.4.1",
     "aws-amplify": "^6.15.5",
     "expo": "~53.0.22",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
-    "react-native": "0.79.6"
+    "react-native": "0.79.5",
+    "react-native-get-random-values": "^1.11.0",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-url-polyfill": "^2.0.0"
   },
   "devDependencies": {
     "@aws-amplify/backend": "^1.16.1",
@@ -22,9 +37,11 @@
     "@types/react": "~19.0.10",
     "aws-cdk-lib": "^2.204.0",
     "constructs": "^10.4.2",
+    "cross-env": "^10.0.0",
     "esbuild": "^0.25.9",
+    "rimraf": "^6.0.1",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "~5.8.3"
   },
   "private": true
 }
